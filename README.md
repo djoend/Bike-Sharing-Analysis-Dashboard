@@ -2,9 +2,9 @@
 
 ## 📌 Deskripsi Proyek
 
-Proyek ini bertujuan untuk menganalisis data penyewaan sepeda menggunakan **Bike Sharing Dataset** yang mencakup periode tahun 2011–2012. Analisis dilakukan untuk memahami pola penggunaan sepeda berdasarkan waktu, kondisi cuaca, serta aktivitas harian pengguna.
+Proyek ini bertujuan untuk menganalisis data penyewaan sepeda menggunakan Bike Sharing Dataset periode tahun 2011–2012. Analisis dilakukan untuk memahami pola penggunaan sepeda berdasarkan waktu, kondisi cuaca, serta aktivitas pengguna.
 
-Selain analisis menggunakan notebook, proyek ini juga dilengkapi dengan **dashboard interaktif menggunakan Streamlit** untuk memvisualisasikan hasil analisis secara lebih intuitif.
+Hasil analisis kemudian disajikan dalam bentuk dashboard interaktif menggunakan Streamlit, sehingga pengguna dapat mengeksplorasi data secara dinamis melalui filter tahun dan bulan.
 
 ---
 
@@ -59,50 +59,57 @@ submission/
 
 ### 4. Visualization & Explanatory Analysis
 
-* Visualisasi tren penyewaan per bulan
-* Analisis hubungan antara cuaca dan penyewaan
-* Analisis pola penyewaan berdasarkan jam
+Dashboard interaktif menampilkan:
+- Filter berdasarkan tahun dan bulan
+- Ringkasan metrik:
+  - Total penyewaan
+  - Rata-rata harian
+  - Maksimum harian
+- Visualisasi:
+  - Tren penyewaan per bulan
+  - Scatter plot suhu vs penyewaan
+  - Heatmap korelasi
+  - Pola penyewaan per jam (working day vs weekend)
 
 ### 5. Analisis Lanjutan
 
-* Clustering sederhana berbasis kategori suhu dan kelembaban untuk mengidentifikasi pola penyewaan pada berbagai kondisi lingkungan
-* Kombinasi suhu hangat dan kelembaban sedang menghasilkan jumlah penyewaan tertinggi
+Dilakukan clustering sederhana berbasis kategori:
+- Kategori suhu: Low, Medium, High
+- Kategori kelembaban: Low, Medium, High
+Kemudian dianalisis rata-rata penyewaan untuk setiap kombinasi kategori menggunakan barplot.
 
 ---
 
 ## 📊 Insight Utama
 
-* Penyewaan sepeda menunjukkan **pola musiman**, dengan peningkatan pada pertengahan tahun.
-* **Suhu memiliki pengaruh positif** terhadap jumlah penyewaan sepeda.
-* **Kelembaban dan kecepatan angin** cenderung menurunkan jumlah penyewaan.
-* Puncak penyewaan terjadi pada **jam pagi dan sore hari**, terutama pada hari kerja.
-* Kombinasi suhu hangat dan kelembaban sedang menghasilkan jumlah penyewaan tertinggi
+* Penyewaan sepeda menunjukkan pola musiman, meningkat pada pertengahan tahun.
+* Tahun 2012 memiliki jumlah penyewaan lebih tinggi dibandingkan 2011.
+* Suhu berpengaruh positif terhadap jumlah penyewaan.
+* Kelembaban dan kecepatan angin cenderung berpengaruh negatif.
+* Pada hari kerja, puncak terjadi di pagi dan sore hari (jam berangkat & pulang kerja).
+* Pada akhir pekan, penyewaan lebih merata dan cenderung tinggi di siang hari.
+* Kombinasi optimal:
+  Suhu tinggi + kelembaban rendah/medium → penyewaan tertinggi
 ---
 
 ## 🚀 Cara Menjalankan Dashboard
 
 ### 1. Install Dependencies
 
-```
 pip install -r requirements.txt
-```
 
-### 2. Jalankan Dashboard
+### 2. Masuk ke Folder Dashboard
 
-Masuk ke folder dashboard:
-
-```
 cd dashboard
+
+### 3. Masuk ke Folder Dashboard
+
 streamlit run dashboard.py
-```
 
-### 3. Akses Dashboard
+### 4. Akses Browser
 
-Buka browser di:
 
-```
 http://localhost:8501
-```
 
 ---
 
