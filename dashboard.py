@@ -112,6 +112,7 @@ if page == "Penjelasan Proyek":
     ### 📊 Latar Belakang
     Bike sharing merupakan salah satu bentuk transportasi modern yang memungkinkan pengguna menyewa sepeda secara praktis tanpa proses yang rumit. Sistem ini banyak digunakan di berbagai kota karena dinilai lebih ramah lingkungan, fleksibel, dan efisien untuk mobilitas jarak pendek.
     Seiring dengan berkembangnya penggunaan bike sharing, data yang dihasilkan juga semakin besar dan beragam, seperti waktu penyewaan, kondisi cuaca, musim, hingga pola aktivitas pengguna. Data tersebut dapat dimanfaatkan untuk memahami perilaku pengguna serta faktor-faktor yang memengaruhi jumlah penyewaan sepeda.
+    
     Melalui analisis data ini, diharapkan dapat diperoleh insight yang berguna untuk membantu pengelola sistem dalam meningkatkan layanan, mengoptimalkan ketersediaan sepeda, serta mendukung pengambilan keputusan berbasis data.
     Dalam proyek ini, digunakan Bike Sharing Dataset yang berisi data historis penyewaan sepeda di Washington D.C., Amerika Serikat selama tahun 2011-2012. Dataset ini telah diperkaya dengan informasi cuaca dan musim, sehingga memungkinkan analisis yang lebih mendalam terkait faktor-faktor yang memengaruhi jumlah penyewaan sepeda.
     
@@ -220,7 +221,6 @@ elif page == "Dashboard":
 
     # INSIGHT 
     st.write("""
-    Insight:
     Terjadi peningkatan penyewaan pada pertengahan tahun dan penurunan pada awal serta akhir tahun.
     Tahun 2012 memiliki jumlah penyewaan yang lebih tinggi dibandingkan 2011.
     """)
@@ -250,7 +250,6 @@ elif page == "Dashboard":
 
         # INSIGHT 
         st.write("""
-        Insight:
         Suhu memiliki hubungan positif terhadap jumlah penyewaan, sedangkan kelembaban dan angin cenderung negatif.
         """)
 
@@ -280,9 +279,52 @@ elif page == "Dashboard":
 
         # INSIGHT 
         st.write("""
-        Insight:
         Hari kerja memiliki dua puncak (pagi & sore), sedangkan akhir pekan lebih merata di siang hari.
         """)
+
+    # ======================
+    # 📊 ANALISIS LANJUTAN
+    # ======================
+    st.header("📊 Clustering Penyewaan Berdasarkan Suhu & Kelembaban")
+
+    day_df['temp_category'] = pd.cut(
+    day_df['temp'],
+    bins=[0, 0.3, 0.6, 1],
+    labels=['Low', 'Medium', 'High']
+    )
+
+    day_df['humidity_category'] = pd.cut(
+        day_df['hum'],
+        bins=[0, 0.4, 0.7, 1],
+        labels=['Low', 'Medium', 'High']
+    )
+
+    cluster = day_df.groupby(
+        ['temp_category','humidity_category'],
+        observed=True
+    )['total_rentals'].mean().reset_index()
+
+    fig5, ax5 = plt.subplots()
+    sns.barplot(
+        data=cluster,
+        x='temp_category',
+        y='total_rentals',
+        hue='humidity_category',
+        errorbar=None,
+        ax=ax5
+    )
+
+    ax5.set_xlabel("Kategori Suhu")
+    ax5.set_ylabel("Rata-rata Penyewaan")
+
+    st.pyplot(fig5)
+
+    # INSIGHT
+    st.write("""
+    Penyewaan sepeda meningkat seiring kenaikan suhu. 
+    Kelembaban tinggi cenderung menurunkan jumlah penyewaan. 
+    Kombinasi terbaik terjadi pada suhu tinggi dengan kelembaban rendah hingga sedang.
+    """)
 
     # ======================
     # FOOTER
