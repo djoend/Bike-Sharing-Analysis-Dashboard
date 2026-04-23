@@ -44,7 +44,6 @@ submission/
 * Gathering data
 * Assessing data
 * Cleaning data:
-
   * Mengubah tipe data tanggal
   * Mapping kategori
   * Rename kolom
@@ -60,23 +59,23 @@ submission/
 ### 4. Visualization & Explanatory Analysis
 
 Dashboard interaktif menampilkan:
-- Filter berdasarkan tahun dan bulan
-- Ringkasan metrik:
-  - Total penyewaan
-  - Rata-rata harian
-  - Maksimum harian
-- Visualisasi:
-  - Tren penyewaan per bulan
-  - Scatter plot suhu vs penyewaan
-  - Heatmap korelasi
-  - Pola penyewaan per jam (working day vs weekend)
+* Filter berdasarkan tahun dan bulan
+* Ringkasan metrik:
+  * Total penyewaan
+  * Rata-rata harian
+  * Maksimum harian
+* Visualisasi:
+  * Tren penyewaan per bulan
+  * Scatter plot suhu vs penyewaan
+  * Heatmap korelasi
+  * Pola penyewaan per jam (working day vs weekend)
 
 ### 5. Analisis Lanjutan
 
 Dilakukan clustering sederhana berbasis kategori:
-- Kategori suhu: Low, Medium, High
-- Kategori kelembaban: Low, Medium, High
-Kemudian dianalisis rata-rata penyewaan untuk setiap kombinasi kategori menggunakan barplot.
+* Kategori suhu: Low, Medium, High
+* Kategori kelembaban: Low, Medium, High
+Analisis dilakukan dengan melihat rata-rata penyewaan pada setiap kombinasi kategori.
 
 ---
 
@@ -90,24 +89,46 @@ Kemudian dianalisis rata-rata penyewaan untuk setiap kombinasi kategori mengguna
 * Pada akhir pekan, penyewaan lebih merata dan cenderung tinggi di siang hari.
 * Kombinasi optimal:
   Suhu tinggi + kelembaban rendah/medium → penyewaan tertinggi
+
+---
+
+## ⚙️ Setup Environment
+
+* Menggunakan Anaconda
+conda create --name bike-sharing python=3.9
+conda activate bike-sharing
+pip install -r requirements.txt
+
+* Menggunakan Virtual Environment (venv)
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# Mac/Linux
+source venv/bin/activate
+
+pip install -r requirements.txt 
+
+* Alternatif (pipenv)
+pip install pipenv
+pipenv install
+pipenv shell
+pip install -r requirements.txt
+
 ---
 
 ## 🚀 Cara Menjalankan Dashboard
 
-### 1. Install Dependencies
-
-pip install -r requirements.txt
-
-### 2. Masuk ke Folder Dashboard
+### 1. Masuk ke Folder Dashboard
 
 cd dashboard
 
-### 3. Masuk ke Folder Dashboard
+### 2. Masuk ke Folder Dashboard
 
 streamlit run dashboard.py
 
-### 4. Akses Browser
-
+### 3. Akses Browser
 
 http://localhost:8501
 
